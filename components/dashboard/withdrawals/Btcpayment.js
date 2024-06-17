@@ -9,6 +9,13 @@ import { useTheme } from "../../../contexts/themeContext";
 import { Input } from "../../ui/input";
 import toast from "react-hot-toast";
 import { useUserData } from "../../../contexts/userrContext";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../ui/select";
 
 export default function Btcpayment({
   handleInputChange,
@@ -31,7 +38,29 @@ export default function Btcpayment({
   const [waitingForPin, setWaitingForPin] = useState(false);
   const [showSucces, setSuccess] = useState(false);
   const { details, setDetails, setNotification } = useUserData();
-
+  const [cryptoMethod, setCryptoMethod] = useState("");
+  const Methods = [
+    {
+      name: "Bitcoin",
+      shortName: "BTC",
+      imagePath: "/assets/markets/crypto/BTC.svg",
+    },
+    {
+      name: "Ethereum",
+      shortName: "Eth",
+      imagePath: "/assets/markets/crypto/ETH.svg",
+    },
+    {
+      name: "Tether US",
+      shortName: "USDT",
+      imagePath: "/assets/markets/crypto/USDT.svg",
+    },
+    {
+      name: "Tron",
+      shortName: "TRX",
+      imagePath: "/assets/markets/crypto/TRX.svg",
+    },
+  ];
   useEffect(() => {
     const updateProgress = () => {
       setProgress((prevProgress) => {
@@ -54,7 +83,7 @@ export default function Btcpayment({
       try {
         const response = await axios.post("/history/withdraw/api", {
           email,
-          withdrawMethod: "Bitcoin Transfer",
+          withdrawMethod: `${cryptoMethod} Transfer`,
           amount: formData.amount,
           transactionStatus: "Pending",
         });
@@ -65,7 +94,7 @@ export default function Btcpayment({
               ...prevDeets.withdrawalHistory,
               {
                 id: response.data.id,
-                withdrawMethod: "Bitcoin Withdrawal",
+                withdrawMethod: cryptoMethod + " Transfer",
                 amount: formData.amount,
                 transactionStatus: "Pending",
                 dateAdded: response.data.date,
@@ -114,7 +143,7 @@ export default function Btcpayment({
         "Securing transaction with multi-signature technology..."
       );
     } else if (currentProgress >= 70 && currentProgress < 80) {
-      setProgressMessage("Preparing Bitcoin for transfer...");
+      setProgressMessage(`Preparing ${cryptoMethodFull} for transfer...`);
     } else if (currentProgress >= 80 && currentProgress < 90) {
       setProgressMessage("Getting withdrawal data from the network...");
     } else if (currentProgress >= 90 && currentProgress < 100) {
@@ -199,6 +228,9 @@ export default function Btcpayment({
       setWithdrawalPinError("Tax Code Pin must be at least 4 characters");
     }
   };
+  const handleValueChange = (value) => {
+    setCryptoMethod(value);
+  };
 
   return (
     <>
@@ -221,10 +253,61 @@ export default function Btcpayment({
             <form onSubmit={handleSubmit}>
               <div className="mb-1 mt-3">
                 <label
+                  htmlFor="paymentOption"
+                  className="font-bold text-sm py-2"
+                >
+                  Select Crypto
+                </label>
+              </div>
+
+              <Select id="paymentOption" onValueChange={handleValueChange}>
+                <SelectTrigger
+                  className={` font-bold border text-sm ${
+                    isDarkMode ? "border-0 bg-[#111] text-white/80" : ""
+                  }`}
+                >
+                  <SelectValue
+                    defaultValue="Bitcoin"
+                    className="font-bold"
+                    placeholder="Select Method"
+                  />
+                </SelectTrigger>
+                <SelectContent
+                  className={`font-bold ${
+                    isDarkMode ? "bg-[#111] text-white/90 border-0" : ""
+                  }`}
+                >
+                  {Methods.map((method) => (
+                    <div key={method.name}>
+                      <SelectItem value={method.name} className="">
+                        <div className="flex items-center py-2">
+                          {" "}
+                          <div className="image mr-2">
+                            <Image
+                              alt=""
+                              src={method.imagePath}
+                              width={20}
+                              height={20}
+                            />
+                          </div>{" "}
+                          <p>{method.name}</p>
+                        </div>
+                      </SelectItem>
+                    </div>
+                  ))}
+                </SelectContent>
+              </Select>
+              {formErrors.walletAddress && (
+                <p className="text-red-500  text-xs mt-1">
+                  {formErrors.walletAddress}
+                </p>
+              )}
+              <div className="mb-1 mt-3">
+                <label
                   htmlFor="walletAddress"
                   className="font-bold text-sm py-2"
                 >
-                  Bitcoin Wallet Address
+                  Wallet Address
                 </label>
               </div>
               <input
@@ -302,7 +385,7 @@ export default function Btcpayment({
                 {loading ? (
                   <InfinitySpin width="100" color="#ffffff" />
                 ) : (
-                  <div className="py-3">Withdraw BTC</div>
+                  <div className="py-3">Withdraw {cryptoMethod}</div>
                 )}
               </button>
             </form>
@@ -436,7 +519,7 @@ export default function Btcpayment({
               isDarkMode ? "text-white/80" : "text-muted-foreground"
             }`}
           >
-            Your Bitcoin (BTC) withdrawal is in the confirmation phase within
+            Your ({cryptoMethod}) withdrawal is in the confirmation phase within
             the blockchain network. Transaction times may vary from 5 minutes to
             2 hours. Monitor the transaction through your history panel. Contact
             us for further assistance.

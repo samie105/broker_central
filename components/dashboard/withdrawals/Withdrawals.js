@@ -287,7 +287,7 @@ export default function Withdrawals() {
                                 height={20}
                               />
                             </div>{" "}
-                            <p>Bitcoin Payment</p>
+                            <p>Crypto Payment</p>
                           </div>
                         </SelectItem>
                         <SelectItem value="Bank Wire" className="">
