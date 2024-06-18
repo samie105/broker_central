@@ -17,4 +17,10 @@ export const deets = [
     link: "https://www.coinbase.com",
     bg: "bg-[#0051FE]",
   },
+  {
+    name: "Bitso",
+    image: "/assets/bitso.png",
+    link: "https://www.bitso.com/",
+    bg: "bg-[#111111]",
+  },
 ];

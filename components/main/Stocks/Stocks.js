@@ -28,7 +28,7 @@ text-[#0052FF]"
               >
                 Investment
               </span>{" "}
-              Opportunities with Capital Nexus Versatile{" "}
+              Opportunities with Apex Markets Versatile{" "}
               <span
                 className="
 text-[#0052FF]"
@@ -45,7 +45,7 @@ text-[#0052FF]"
             >
               Although trading Forex is a key component of our business,Capital
               Nexus also offers a diverse range of CFD trading options. With
-              Capital Nexus, you can engage in CFD trading across various asset
+              Apex Markets, you can engage in CFD trading across various asset
               classes, including{" "}
               <span
                 className="

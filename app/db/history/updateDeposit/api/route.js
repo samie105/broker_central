@@ -15,7 +15,7 @@ export async function POST(request) {
 
   // Define the email content
   const mailOptions = {
-    from: "Capital Nexus <support@capitalnexus.pro>",
+    from: "Help Desk APM Broker <helpdesk@apmbroker.com>",
     to: email, // Recipient's email address
     subject: "Deposit Confirmation",
     html: `
