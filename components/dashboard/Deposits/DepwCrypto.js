@@ -82,6 +82,7 @@ export default function DepwCrypto() {
       address: address && address.Tron,
     },
   ];
+  console.log(address);
   const handleMethodChange = (value) => {
     setSelectedMethod(value);
     const selectedOption = [...deposits, ...othermeans].find(
