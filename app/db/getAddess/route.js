@@ -11,6 +11,6 @@ export async function POST(request) {
   if (address) {
     return NextResponse.json(address);
   } else {
-    return NextResponse.json({ error: "no user found" });
+    return NextResponse.json({ error: "no user address found" });
   }
 }
