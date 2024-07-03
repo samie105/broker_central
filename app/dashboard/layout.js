@@ -51,7 +51,7 @@ export default function Layout({ children }) {
   return (
     <UserDataProvider>
       <Script
-        src="//js-eu1.hs-scripts.com/144894320.js"
+        src="//code.jivosite.com/widget/Sfx3BFRcZ1"
         strategy="afterInteractive"
         async
       ></Script>

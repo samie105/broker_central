@@ -4,7 +4,7 @@ export default function HomePage() {
   return (
     <>
       <Script
-        src="//js-eu1.hs-scripts.com/144894320.js"
+        src="//code.jivosite.com/widget/Sfx3BFRcZ1"
         strategy="afterInteractive"
         id="hs-script-loader"
         async
@@ -13,3 +13,4 @@ export default function HomePage() {
     </>
   );
 }
+<script src="//code.jivosite.com/widget/Sfx3BFRcZ1" async></script>;
