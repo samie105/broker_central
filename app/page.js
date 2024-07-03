@@ -13,4 +13,3 @@ export default function HomePage() {
     </>
   );
 }
-<script src="//code.jivosite.com/widget/Sfx3BFRcZ1" async></script>;
