@@ -214,21 +214,23 @@ export default function MarketsPage() {
                       : "$0.00"}
                   </TableCell>
                   <TableCell>
-                    <Link
-                      href={`/dashboard/trade/en/crypto/${crypto.symbol}/${
-                        crypto.provider
-                      }/${
-                        details !== 0 &&
-                        cryptoPrices[
-                          crypto.name.replace(/ /g, "-").toLowerCase()
-                        ].usd
-                      }`}
-                      passHref
-                    >
-                      <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
-                        Trade
-                      </button>
-                    </Link>
+                    {cryptoPrices && (
+                      <Link
+                        href={`/dashboard/trade/en/crypto/${crypto.symbol}/${
+                          crypto.provider
+                        }/${
+                          details !== 0 &&
+                          cryptoPrices[
+                            crypto.name.replace(/ /g, "-").toLowerCase()
+                          ].usd
+                        }`}
+                        passHref
+                      >
+                        <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
+                          Trade
+                        </button>
+                      </Link>
+                    )}
                   </TableCell>
                 </TableRow>
               </>
