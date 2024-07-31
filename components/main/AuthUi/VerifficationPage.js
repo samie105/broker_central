@@ -42,8 +42,6 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
         },
         body: JSON.stringify({ email: formData.email }),
       });
-
-      if (response.status === 200) toast.success("code sent");
     } catch (error) {
       console.error(error);
     }
